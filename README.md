@@ -27,7 +27,7 @@ A modular conversational app for searching, filtering, and comparing top open-so
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/mrzarei5/modelboard.git
+git clone https://github.com/mrzarei5/ModelBoard.git
 cd modelboard-agentic-rag
 
 # Create and activate a conda environment
