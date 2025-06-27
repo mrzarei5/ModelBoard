@@ -1,0 +1,10 @@
+**/__pycache__/
+.DS_Store
+.vscode/
+*.pyc
+*.pkl
+.git/
+.gitignore
+assets/*.png
+assets/*.jpg
+assets/*.jpeg

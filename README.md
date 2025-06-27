@@ -7,7 +7,6 @@ A modular conversational app for searching, filtering, and comparing top open-so
 *Interactive semantic search and model comparison, powered by agentic RAG.*
 ![App Screenshot](assets/app.png)  
 
-
 ---
 
 ## 🚀 Features
@@ -24,7 +23,9 @@ A modular conversational app for searching, filtering, and comparing top open-so
 
 ## 🛠️ Getting Started
 
-### 1. Clone and install
+### Option 1: Local Python/Conda Installation
+
+1. **Clone and install**
 
 ```bash
 git clone https://github.com/mrzarei5/ModelBoard.git
@@ -34,40 +35,76 @@ cd modelboard-agentic-rag
 conda create -n modelboard python=3.10
 conda activate modelboard
 
-# Install requirementss
+# Install requirements
 pip install -r requirements.txt
 ```
 
-### 2. Set your API keys
-
-**OpenAI API key (required)**
+2. **Set your API keys**
 
 Create a `.env` file in the project root directory and add your OpenAI API key:
 
 ```ini
 OPENAI_API_KEY=sk-...
 ```
-**Hugging Face API key (optional)**
-
-Add your Hugging Face API key (if wanted to be used for downloading leaderboard metadata):
-
+(Optional) Add your Hugging Face API key:
 ```ini
-HF_API_KEY=hf_...
+HF_API_KEY=hf-...
 ```
 
-### 3. (Optional) Update model leaderboard metadata
+3. **(Optional) Update model leaderboard metadata**
 
-If you want to download the latest leaderboard data or refresh your model list, run:
+To download or refresh the leaderboard data:
 ```bash
 python data/fetch_leaderboard.py
 ```
 This will (re)generate `model_metadata.json` in the `data` folder.
 
-### 4. Run the app
+4. **Run the app**
 
 ```bash
 streamlit run main.py
 ```
+
+---
+
+### Option 2: Run with Docker
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/mrzarei5/ModelBoard.git
+cd ModelBoard
+```
+
+2. **Create a `.env` file**
+
+In the project root, create a file named `.env` with your API keys:
+```ini
+OPENAI_API_KEY=sk-...
+# (Optional) Hugging Face API key:
+# HF_API_KEY=hf-...
+```
+
+3. **Build the Docker image**
+
+```bash
+docker build -t modelboard .
+```
+
+4. **(Optional) Update model leaderboard metadata inside the container**
+
+```bash
+docker run --rm -v $(pwd)/data:/app/data modelboard python data/fetch_leaderboard.py
+```
+
+5. **Run the app**
+
+```bash
+docker run -p 8501:8501 -v $(pwd)/data:/app/data modelboard
+```
+
+- The app will be available at: [http://localhost:8501](http://localhost:8501)
+- For persistent leaderboard data, mount the `data/` directory as shown above.
 
 ---
 
